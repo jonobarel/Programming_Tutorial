@@ -36,13 +36,18 @@ public class IntroToProgramming : MonoBehaviour
             for (int i = 0; i < num; i++)
             {
                 GameObject item = Instantiate(model, spawnPoint.transform.position+Vector3.up*i, RandomQuaternion());
-                ApplyColor(item, color);
-                item.AddComponent<Rigidbody>();
-                item.transform.localScale = Vector3.one*scale;
-                ApplyLayer(item, "Default");
+                SetColorAndScale(item, color, scale);
             }
 
             return num;
+        }
+
+        private void SetColorAndScale(GameObject item, Color color, float scale)
+        {
+            ApplyColor(item, color);
+            item.AddComponent<Rigidbody>();
+            item.transform.localScale = Vector3.one * scale;
+            ApplyLayer(item, "Default");
         }
 
         void ApplyColor(GameObject obj, Color col)
