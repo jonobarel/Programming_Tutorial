@@ -25,6 +25,7 @@ public class SliderHandler : MonoBehaviour
     void SetTextFromSlider(float value)
     {
         inputField.text = $"{value}";
+        inputField.onEndEdit?.Invoke(inputField.text);
     }
 
     void OnDestroy()
