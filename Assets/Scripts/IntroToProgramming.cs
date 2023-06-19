@@ -8,7 +8,8 @@ using Random = UnityEngine.Random;
 
 public class IntroToProgramming : MonoBehaviour
 {
-
+        //These are the variables you see on screen.
+        //They are "declared" in this section - that means we are announcing to the computer that it must allocate memory to store these values, and that they will be accessible by name.
         [SerializeField] 
         private int numberOfObjectsToCreate = 1;
         
@@ -26,11 +27,16 @@ public class IntroToProgramming : MonoBehaviour
 
         [SerializeField] private Transform spawnPoint;
 
+        //This is a method! It makes our class do something.
+        //Can you tell what this method does?
         public void CreateButtonAction()
         {
                 numberOfObjectsInScene = numberOfObjectsInScene + CreateObjects(numberOfObjectsToCreate, model, modelColor, objectScale);
         }
 
+
+        //This is another method. It has a return type (int), meaning that after it runs, it will return a value to you. You'll need to decide if you want to do something with it.
+        //This method also accepts parameters: can you tell what they're for?
         private int CreateObjects(int num, GameObject model, Color color, float scale)
         {
             for (int i = 0; i < num; i++)
@@ -42,6 +48,7 @@ public class IntroToProgramming : MonoBehaviour
             return num;
         }
 
+        //Here's another method. It doesn't return a value. What does it do?
         private void SetColorAndScale(GameObject item, Color color, float scale)
         {
             ApplyColor(item, color);
