@@ -8,6 +8,21 @@ public class ModelSelector : MonoBehaviour
 {
     private Dictionary<string, GameObject> _models = new Dictionary<string, GameObject>();
     [SerializeField] string defaultModel = "cocktail";
+    private Rigidbody rb;
+
+    public Rigidbody Rigidbody
+    {
+        get
+        {
+            if (rb == null)
+            {
+                rb = GetComponent<Rigidbody>();
+            }
+
+            return rb;
+        }
+    }
+    
     
     [FormerlySerializedAs("_selectedModel")] [SerializeField]
     private string selectedModel;
@@ -52,14 +67,6 @@ public class ModelSelector : MonoBehaviour
         }
         _current = _models[s];
         _current.SetActive(true);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Cull"))
-        {
-            GameObject.Destroy(gameObject);
-        }
     }
 
 }
