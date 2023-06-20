@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Random = UnityEngine.Random;
 
     public static class HelperMethods
     {
@@ -27,6 +28,7 @@
         
         public static Quaternion RandomQuaternion()
         {
-            return new Quaternion(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f),1);
+            Vector4 rotVector = new Vector4(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f),1).normalized;
+            return new Quaternion(rotVector.x, rotVector.y, rotVector.z, rotVector.w);
         }
     }

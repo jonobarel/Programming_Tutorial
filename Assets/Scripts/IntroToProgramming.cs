@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
+
 
 
 public class IntroToProgramming : MonoBehaviour
@@ -28,7 +28,8 @@ public class IntroToProgramming : MonoBehaviour
         private int numberOfObjectsInScene = 0;
 
         [SerializeField] private Transform spawnPoint;
-
+        
+        [SerializeField] public string selectedModel;
         
         /// <summary>
         /// This is a method! It makes our class do something.
@@ -36,7 +37,7 @@ public class IntroToProgramming : MonoBehaviour
         /// </summary>
         public void CreateButtonAction()
         {
-                numberOfObjectsInScene = numberOfObjectsInScene + CreateObjects(numberOfInstancesToCreate, model, modelColor, objectScale);
+                numberOfObjectsInScene = numberOfObjectsInScene + CreateObjects(numberOfInstancesToCreate, selectedModel, modelColor, objectScale);
         }
 
         /// <summary>
@@ -45,19 +46,26 @@ public class IntroToProgramming : MonoBehaviour
         ///This method also accepts parameters: can you tell what they're for? 
         /// </summary>
         /// <param name="num"></param>
-        /// <param name="objectToSpawn"></param>
+        /// <param name="modelName"></param>
         /// <param name="color"></param>
         /// <param name="scale"></param>
         /// <returns></returns>
     
-        private int CreateObjects(int num, GameObject objectToSpawn, Color color, float scale)
+        private int CreateObjects(int num, string modelName, Color color, float scale)
         {
             for (int i = 0; i < num; i++)
             {
-                GameObject item = Instantiate(objectToSpawn, spawnPoint.transform.position+Vector3.up*i, HelperMethods.RandomQuaternion());
+                GameObject item = RequestInstance(spawnPoint.transform.position+Vector3.up*i, HelperMethods.RandomQuaternion());
+                item.GetComponent<ModelSelector>().SelectedModel = modelName;
                 SetColorAndScale(item, color, scale);
             }
             return num;
+        }
+
+        protected virtual GameObject RequestInstance(Vector3 position, Quaternion rotation)
+        {
+            GameObject instance = Instantiate(Model, position, rotation);
+            return instance;
         }
 
         
@@ -70,7 +78,6 @@ public class IntroToProgramming : MonoBehaviour
         private void SetColorAndScale(GameObject item, Color color, float scale)
         {
             ApplyColor(item, color);
-            item.AddComponent<Rigidbody>();
             item.transform.localScale = Vector3.one * scale;
             HelperMethods.ApplyLayer(item, "Default");
         }
