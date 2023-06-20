@@ -1,27 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ModelSelector : MonoBehaviour
 {
-    [SerializeField]
-    private Dictionary<string, GameObject> models;
+    private Dictionary<string, GameObject> _models = new Dictionary<string, GameObject>();
     [SerializeField] string defaultModel = "cocktail";
-
-    private GameObject current = null;
-    void Start()
+    
+    [FormerlySerializedAs("_selectedModel")] [SerializeField]
+    private string selectedModel;
+    public string SelectedModel
     {
-        models = new Dictionary<string, GameObject>();
+        get => selectedModel;
+        set
+        {
+            if (_models.ContainsKey(value))
+            {
+                ToggleModel(value);
+                selectedModel = value;
+            }
+        }
+    }
+    private GameObject _current = null;
+    
+    void Awake()
+    {
         PopulateModelsDict();
-        ToggleModel(defaultModel);
-        
+        SelectedModel = selectedModel.Equals("") ? defaultModel : selectedModel;
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void PopulateModelsDict()
     {
@@ -30,18 +40,18 @@ public class ModelSelector : MonoBehaviour
         {
             GameObject child = transform.GetChild(i).gameObject;
             child.SetActive(false);
-            models.Add(child.name, child);
+            _models.Add(child.name, child);
         }
     }
 
     void ToggleModel(string s)
     {
-        if (current != null)
+        if (_current != null)
         {
-            current.SetActive(false);    
+            _current.SetActive(false);    
         }
-        current = models[s];
-        current.SetActive(true);
+        _current = _models[s];
+        _current.SetActive(true);
     }
     
     

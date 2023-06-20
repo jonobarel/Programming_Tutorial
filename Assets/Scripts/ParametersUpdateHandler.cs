@@ -19,10 +19,11 @@ public class ParametersUpdateHandler : MonoBehaviour
 
     void Start()
     {
+        
         introObject = GetComponent<IntroToProgramming>();
+        
         colorToggles.toggledObjectChanged.AddListener(UpdateColor);
         objectToggles.toggledObjectChanged.AddListener(UpdateModel);
-
         numObjectsField.onEndEdit.AddListener(UpdateCount);
         objectScaleField.onEndEdit.AddListener(UpdateScale);
     }
@@ -35,12 +36,12 @@ public class ParametersUpdateHandler : MonoBehaviour
 
     void UpdateModel(GameObject model)
     {
-        introObject.Model = model;
+        introObject.Model.GetComponent<ModelSelector>().SelectedModel = model.GetComponent<ModelSelector>().SelectedModel;
     }
 
     void UpdateCount(string str)
     {
-        introObject.NumberOfObjectsToCreate = int.Parse(str);
+        introObject.NumberOfInstancesToCreate = int.Parse(str);
     }
 
     void UpdateScale(string str)

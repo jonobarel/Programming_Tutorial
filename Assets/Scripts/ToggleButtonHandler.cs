@@ -7,20 +7,21 @@ using UnityEngine.UI;
 public class ToggleButtonHandler : MonoBehaviour
 { 
     [SerializeField] private GameObject targetObject;
-
+    [SerializeField] private Toggle toggle;
     public GameObject TargetObject
     {
         get => targetObject;
-        private set => targetObject = value;
+        set => targetObject = value;
     }
     
     ToggleGroupHandler _pickerContainer;
 
     void Start()
     {
-        _pickerContainer = transform.parent.GetComponentInParent<ToggleGroupHandler>();
+        _pickerContainer = transform.GetComponentInParent<ToggleGroupHandler>();
         Debug.Log(name + " Obtained Toggle Group Container: "+_pickerContainer.name);
-        GetComponent<Toggle>().onValueChanged.AddListener(UpdateObjectPicker);
+        toggle = GetComponentInChildren<Toggle>();
+        toggle.onValueChanged.AddListener(UpdateObjectPicker);
     }
 
     void UpdateObjectPicker(bool isSet)
@@ -33,7 +34,7 @@ public class ToggleButtonHandler : MonoBehaviour
 
     void OnDestroy()
     {
-        GetComponent<Toggle>().onValueChanged.RemoveListener(UpdateObjectPicker);
+        toggle.onValueChanged.RemoveListener(UpdateObjectPicker);
 
     }
 

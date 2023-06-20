@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
 public class IntroToProgramming : MonoBehaviour
 {
         //These are the variables you see on screen.
-        //They are "declared" in this section - that means we are announcing to the computer that it must allocate memory to store these values, and that they will be accessible by name.
+        //They are "declared" in this section - that means we are announcing to the computer that it must allocate
+        //memory to store these values, and that they will be accessible by name.
         [SerializeField] 
-        private int numberOfObjectsToCreate = 1;
+        private int numberOfInstancesToCreate = 1;
         
         [SerializeField] 
         private float objectScale = 1;
@@ -27,34 +29,50 @@ public class IntroToProgramming : MonoBehaviour
 
         [SerializeField] private Transform spawnPoint;
 
-        //This is a method! It makes our class do something.
-        //Can you tell what this method does?
+        
+        /// <summary>
+        /// This is a method! It makes our class do something.
+        /// Can you tell what this method does? 
+        /// </summary>
         public void CreateButtonAction()
         {
-                numberOfObjectsInScene = numberOfObjectsInScene + CreateObjects(numberOfObjectsToCreate, model, modelColor, objectScale);
+                numberOfObjectsInScene = numberOfObjectsInScene + CreateObjects(numberOfInstancesToCreate, model, modelColor, objectScale);
         }
 
-
-        //This is another method. It has a return type (int), meaning that after it runs, it will return a value to you. You'll need to decide if you want to do something with it.
-        //This method also accepts parameters: can you tell what they're for?
-        private int CreateObjects(int num, GameObject model, Color color, float scale)
+        /// <summary>
+        ///This is another method. It has a return type (int), meaning that after it runs, it will return a value to you.
+        ///You'll need to decide if you want to do something with it.
+        ///This method also accepts parameters: can you tell what they're for? 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="objectToSpawn"></param>
+        /// <param name="color"></param>
+        /// <param name="scale"></param>
+        /// <returns></returns>
+    
+        private int CreateObjects(int num, GameObject objectToSpawn, Color color, float scale)
         {
             for (int i = 0; i < num; i++)
             {
-                GameObject item = Instantiate(model, spawnPoint.transform.position+Vector3.up*i, RandomQuaternion());
+                GameObject item = Instantiate(objectToSpawn, spawnPoint.transform.position+Vector3.up*i, HelperMethods.RandomQuaternion());
                 SetColorAndScale(item, color, scale);
             }
-
             return num;
         }
 
-        //Here's another method. It doesn't return a value. What does it do?
+        
+        /// <summary>
+        /// Here's another method. It doesn't return a value. What does it do?
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="color"></param>
+        /// <param name="scale"></param>
         private void SetColorAndScale(GameObject item, Color color, float scale)
         {
             ApplyColor(item, color);
             item.AddComponent<Rigidbody>();
             item.transform.localScale = Vector3.one * scale;
-            ApplyLayer(item, "Default");
+            HelperMethods.ApplyLayer(item, "Default");
         }
 
         void ApplyColor(GameObject obj, Color col)
@@ -69,32 +87,12 @@ public class IntroToProgramming : MonoBehaviour
             }
         }
 
-        void ApplyLayer(GameObject item, string layerName)
-        {
-            item.layer = LayerMask.NameToLayer(layerName);
-            foreach (Transform child in item.transform)
-            {
-                if (child.childCount > 0)
-                {
-                    ApplyLayer(child.gameObject, layerName);
-                }
-                else
-                {
-                    child.gameObject.layer = LayerMask.NameToLayer(layerName);
-                }
-                
-            }
-        }
 
-        Quaternion RandomQuaternion()
-        {
-            return new Quaternion(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f),1);
-        }
         #region AccessorMethods
-        public int NumberOfObjectsToCreate
+        public int NumberOfInstancesToCreate
         {
-            set => numberOfObjectsToCreate = value;
-            get => numberOfObjectsToCreate;
+            set => numberOfInstancesToCreate = value;
+            get => numberOfInstancesToCreate;
         }
 
         public Color ModelColor
