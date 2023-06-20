@@ -36,7 +36,7 @@ public class ParametersUpdateHandler : MonoBehaviour
 
     void UpdateModel(GameObject model)
     {
-        introObject.Model.GetComponent<ModelSelector>().SelectedModel = model.GetComponent<ModelSelector>().SelectedModel;
+        introObject.selectedModel = model.GetComponent<ModelSelector>().SelectedModel;
     }
 
     void UpdateCount(string str)

@@ -18,5 +18,6 @@ public class ObjectContainer : MonoBehaviour
         HelperMethods.ApplyLayer(model, "UI");
         model.GetComponent<ModelSelector>().SelectedModel = modelSelectorString;
         transform.parent.GetComponent<ToggleButtonHandler>().TargetObject = model;
+        model.GetComponent<Rigidbody>().isKinematic = true;
     }
 }
