@@ -53,6 +53,13 @@ public class ModelSelector : MonoBehaviour
         _current = _models[s];
         _current.SetActive(true);
     }
-    
-    
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Cull"))
+        {
+            GameObject.Destroy(gameObject);
+        }
+    }
+
 }
