@@ -1154,6 +1154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: burgerButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3292658122200759251, guid: 6c314acb85c6e214d87b1ae619531ba5, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: a8de31a6aa553ec44b3fc67f55c2ac6e, type: 2}
     - target: {fileID: 3645192977741301143, guid: 6c314acb85c6e214d87b1ae619531ba5, type: 3}
       propertyPath: defaultModel
       value: burgerCheese
