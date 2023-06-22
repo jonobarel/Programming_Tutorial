@@ -16,7 +16,7 @@ public class IntroToProgramming : MonoBehaviour
         private int numberOfInstancesToCreate = 1;
         
         [SerializeField] 
-        private float objectScale = 1;
+        private float instanceScale = 1;
         
         [SerializeField] 
         private Color modelColor = Color.white;
@@ -25,7 +25,7 @@ public class IntroToProgramming : MonoBehaviour
         private GameObject model;
 
         [SerializeField] 
-        private int numberOfObjectsInScene = 0;
+        private int numberOfInstancesInScene = 0;
 
         [SerializeField] private Transform spawnPoint;
         
@@ -37,7 +37,7 @@ public class IntroToProgramming : MonoBehaviour
         /// </summary>
         public void CreateButtonAction()
         {
-                numberOfObjectsInScene = numberOfObjectsInScene + CreateObjects(numberOfInstancesToCreate, selectedModel, modelColor, objectScale);
+                numberOfInstancesInScene = numberOfInstancesInScene + CreateObjects(numberOfInstancesToCreate, selectedModel, modelColor, instanceScale);
         }
 
         /// <summary>
@@ -108,10 +108,10 @@ public class IntroToProgramming : MonoBehaviour
             set => modelColor = value;
         }
 
-        public float ObjectScale
+        public float InstanceScale
         {
-            get => objectScale;
-            set => objectScale = value;
+            get => instanceScale;
+            set => instanceScale = value;
         }
 
         public GameObject Model
