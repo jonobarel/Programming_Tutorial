@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(ToggleGroup))]
 public class ToggleGroupHandler : MonoBehaviour
 {
     private ToggleGroup _group;
