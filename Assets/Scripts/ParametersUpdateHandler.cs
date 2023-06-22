@@ -46,7 +46,7 @@ public class ParametersUpdateHandler : MonoBehaviour
 
     void UpdateScale(string str)
     {
-        introObject.ObjectScale = float.Parse(str);
+        introObject.InstanceScale = float.Parse(str);
     }
 
     void OnDestroy()
