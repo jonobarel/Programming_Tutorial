@@ -10,9 +10,9 @@ assignees: ''
 ## Description
 
 ## Affected components
-[] UI
-[] Existing Prefabs
-[] Existing logic
-[] Backend logic
+- [ ] UI
+- [ ] Existing Prefabs
+- [ ] Existing logic
+- [ ] Backend logic
 
 ## Dependencies
