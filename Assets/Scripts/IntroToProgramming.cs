@@ -17,6 +17,7 @@ public class IntroToProgramming : MonoBehaviour
         
         [SerializeField] 
         private float instanceScale = 1;
+
         
         [SerializeField] 
         private Color modelColor = Color.white;
@@ -37,6 +38,7 @@ public class IntroToProgramming : MonoBehaviour
         /// </summary>
         public void CreateButtonAction()
         {
+        
                 numberOfInstancesInScene = numberOfInstancesInScene + CreateObjects(numberOfInstancesToCreate, selectedModel, modelColor, instanceScale);
         }
 
