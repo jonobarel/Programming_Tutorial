@@ -1,5 +1,8 @@
 # Programming_Tutorial
 
+Project homepages:
+[GitHub](https://github.com/https://github.com/jonobarel/Programming_Tutorial/) and [itch.io](https://jonobarel.itch.io/intro-to-programming-with-unity)
+
 This Unity project is meant to serve as an introduction to programming concept by provided learners with a simple block of code, and an interactive view that they can easily associate with said code.
 
 By looking at the contents of the main class (`IntroToProgramming`), learners can associate concepts like `int` and `float` with visible representations, as well as function calls and variables.

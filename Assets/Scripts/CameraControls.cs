@@ -15,7 +15,7 @@ public class CameraControls : MonoBehaviour
     {
         if (orbitingCamera == null || slider == null)
         {
-            Debug.Log("Missing camera or slider gameobject");
+            orbitingCamera = Camera.main.GetComponent<OrbitingCamera>();
         }
 
         slider.onValueChanged.AddListener(UpdateOrbitSpeed);
